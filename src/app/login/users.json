@@ -1,0 +1,14 @@
+[
+  {
+    "email": "user1@com.au",
+    "password": "123"
+  },
+  {
+    "email": "user2@com.au",
+    "password": "456"
+  },
+  {
+    "email": "user3@com.au",
+    "password": "12345"
+  }
+]
