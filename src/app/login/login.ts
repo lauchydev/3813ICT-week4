@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class Login {
   // Inject router
   private router = inject(Router);
+  private http = inject(HttpClient);
 
   // Default user/password for the form
   email = '';
@@ -19,37 +21,29 @@ export class Login {
   // Error message
   errorMessage = '';
 
-  users = [
-    {
-      email: 'user1@com.au',
-      password: '123',
-    },
-    {
-      email: 'user2@com.au',
-      password: '456',
-    },
-    {
-      email: 'user3@com.au',
-      password: '12345',
-    },
-  ];
-
   validateUser(form: NgForm) {
     // Clear error message
     this.errorMessage = '';
 
-    // User find() method to check if user is valid from input
-    const validUser = this.users.find(
-      (user) =>
-        form.value.email == user.email && form.value.password == user.password
-    );
+    this.http
+      .post('http://localhost:3000/api/auth', {
+        email: form.value.email,
+        password: form.value.password,
+      })
+      .subscribe({
+        next: (response: any) => {
+          if (response.valid) {
+            localStorage.setItem('user', JSON.stringify(response));
 
-    if (validUser) {
-      // User was valid, send them to profile page
-      this.router.navigate(['/profile']);
-    } else {
-      // User was invalid, display error
-      this.errorMessage = 'Invalid email or password';
-    }
+            this.router.navigate(['/profile']);
+          } else {
+            this.errorMessage = 'Invalid username or password';
+          }
+        },
+        error: (error) => {
+          console.error('Login Error:', error);
+          this.errorMessage = 'Login failed. Please try again.';
+        },
+      });
   }
 }
