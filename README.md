@@ -18,7 +18,7 @@ ng new week4-workshop
 To install all required dependencies run:
 
 ```bash
-npm i
+npm i && cd server && npm i
 ```
 
 ## Generating Components
@@ -29,12 +29,18 @@ To generate new components for the app run:
 ng g component <component-name>
 ```
 
-## Starting the App
+## Starting the App & Server
 
 To Start the app run:
 
 ```bash
 ng serve
+```
+
+To Start the server, navigate to `/server` and run:
+
+```bash
+nodemon server.js
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload if you modify any of the source files.
