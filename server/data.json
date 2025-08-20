@@ -1,0 +1,26 @@
+[
+  {
+    "username": "admin",
+    "birthdate": "2001-01-05",
+    "age": 20,
+    "email": "admin@email.com",
+    "password": "password123",
+    "valid": false
+  },
+  {
+    "username": "user1",
+    "birthdate": "2003-04-13",
+    "age": 20,
+    "email": "user1@email.com",
+    "password": "user123",
+    "valid": false
+  },
+  {
+    "username": "user2",
+    "birthdate": "2005-05-02",
+    "age": 20,
+    "email": "user2@email.com",
+    "password": "user456",
+    "valid": false
+  }
+]
