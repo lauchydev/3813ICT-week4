@@ -1,7 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-profile',
   imports: [FormsModule],
@@ -9,13 +7,14 @@ import { Router } from '@angular/router';
   styleUrl: './profile.css',
 })
 export class Profile implements OnInit {
-  private router = inject(Router);
+  // If we made it here the Auth Guard check has already succeeded
 
-  username = '';
-  birthdate = '';
-  age = 0;
-  email = '';
-  loggedIn = false;
+  // Create template for user object
+  username: string = '';
+  birthdate?: Date;
+  age?: number;
+  email: string = '';
+  loggedIn: boolean = false;
 
   ngOnInit(): void {
     // retrieve the stored local storage data for current user
